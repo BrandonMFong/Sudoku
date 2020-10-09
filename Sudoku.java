@@ -1,7 +1,6 @@
 import java.io.File; 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-// import java.util.ArrayList;
 
 class Sudoku 
 {
@@ -26,12 +25,16 @@ class Sudoku
         System.out.print("\n[]=====[]=====[]=====[]\n");
     }
 
+    public static void Solve(String [][]Board)
+    {
+        Hash Hash = new Hash();
+    }
+
 
     public static void main(String[] args) throws FileNotFoundException 
     {
         // Load array list variable
         Scanner FileReader = new Scanner(new File(".\\res\\Matrix.csv"));
-        // ArrayList<String[]> Board = new ArrayList<String[]>();
         String [][] Board = new String[9][9];
         
         // go through each line
@@ -43,7 +46,7 @@ class Sudoku
         PrintBoard(Board);
 
         // Solve the board 
-
+        Solve(Board);
 
     }
 }
