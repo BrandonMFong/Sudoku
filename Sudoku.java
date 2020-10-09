@@ -4,19 +4,21 @@ import java.util.Scanner;
 
 class Sudoku 
 {
+    static int Max = 9;
+    static String EmptySquare = "";
     
     // Print contents of array list 
     // Each entry of the list is a string array so we have to go through that string array 
     public static void PrintBoard(String [][] Board)
     {
-        for(int i = 0; i < 9;i++)
+        for(int i = 0; i < Max;i++)
         {
             if(i%3 == 0) {System.out.println("\n[]=====[]=====[]=====[]");}
             else{System.out.println();}
-            for(int k = 0; k < 9;k++)
+            for(int k = 0; k < Max;k++)
             {
                 if(k%3 == 0) {System.out.print("[]");}
-                if(Board[i][k].equals("")) System.out.print(" "); // if the indexed value is empty from the csv 
+                if(Board[i][k].equals(EmptySquare)) System.out.print(" "); // if the indexed value is empty from the csv 
                 else System.out.print(Board[i][k]);
                 if(k%3 != 2){System.out.print("|");}
             }
@@ -25,9 +27,29 @@ class Sudoku
         System.out.print("\n[]=====[]=====[]=====[]\n");
     }
 
-    public static void Solve(String [][]Board)
+    public static boolean Solve(String [][]Board)
     {
+        boolean Done = false;
+
+        // Remember that Hash is not zero index 
         Hash Hash = new Hash();
+        Hash.Column = 1; // Column 1
+        Hash.Row = 1; // Row 1
+        Hash.Block.Num = 1; //Block 1
+
+        // Find an empty square
+        for(int r = 0; r < Max; r++)
+        {
+            for(int c = 0; c < Max; c++)
+            {
+                if(Board[r][c].equals(EmptySquare))
+                {
+                    Hash.Row = r; Hash.Column = c;
+                }
+            }
+        }
+
+        return Done;
     }
 
 
@@ -35,18 +57,18 @@ class Sudoku
     {
         // Load array list variable
         Scanner FileReader = new Scanner(new File(".\\res\\Matrix.csv"));
-        String [][] Board = new String[9][9];
+        String [][] Board = new String[Max][Max];
         
         // go through each line
         // ensuring size 9 array 
         // Each line is an array, add that to the array list 
-        for(int i = 0; i < 9; i++) Board[i] = FileReader.nextLine().split(",",9); 
+        for(int i = 0; i < Max; i++) Board[i] = FileReader.nextLine().split(",",Max); 
         FileReader.close();
 
         PrintBoard(Board);
 
         // Solve the board 
-        Solve(Board);
+        if(Solve(Board)) PrintBoard(Board);
 
     }
 }

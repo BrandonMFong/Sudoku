@@ -1,11 +1,51 @@
 public class Hash 
 {
     // NO ZERO INDEX
-    int Row;
-    int Column;
+    // Keeps track of the current index we are solving
+    private int Row;
+    private int Column;
+    private Block Block;
+
+    // GET
+    public int GetRow(){return Row;}
+    public int GetColumn(){return Column;}
+    public int GetBlockNum(){return Block.Num;}
+
+    // SET
+    public void SetRow(int value)
+    {
+        Row = value;
+        SetBlockNum();
+    }
+    public void SetColumn(int value)
+    {
+        Column = value;
+        SetBlockNum();
+    }
+
+    // Evaluates block number from the value of the rows
+    // evaluated by setting col/row num
+    private void SetBlockNum()
+    {
+        for(int i = 0; i < 3; i++) // row of blocks
+        {
+            for(int k = 0; k < 3; k++) // column of blocks
+            {
+                if((((1*i)<=Row) && (Row<=(3*i))) && (((1*k)<=Column) && (Column<=(3*k))))
+                {
+                    Block.SetNum(i+1); // Assign block number
+                }
+            }
+        }
+    }
     class Block
     {
-        int Num;
+        private int Num;
+
+        public int GetNum() {return Num;}
+        public void SetNum(int value) {Num = value;}
+
+        // do I need the following? 
 
         // The following two methods returns the top left row/column index
         public int GetRow() 
