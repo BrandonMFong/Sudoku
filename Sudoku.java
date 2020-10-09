@@ -1,5 +1,6 @@
 import java.io.File; 
 import java.io.FileNotFoundException;
+import java.text.MessageFormat;
 import java.util.Scanner;
 
 class Sudoku 
@@ -33,8 +34,9 @@ class Sudoku
 
         // Remember that Hash is not zero index 
         Hash Hash = new Hash();
-        Hash.SetColumn(1); // Column 1
-        Hash.SetRow(1); // Row 1
+        Hash.SetColumn(3); // Column 1
+        Hash.SetRow(4); // Row 1
+        System.out.println(MessageFormat.format("We are in block {0}", Hash.GetBlockNum()));
 
         // Find an empty square
         for(int r = 0; r < Max; r++)

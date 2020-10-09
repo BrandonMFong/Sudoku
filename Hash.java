@@ -27,14 +27,14 @@ public class Hash
     // evaluated by setting col/row num
     private void SetBlockNum()
     {
-        for(int i = 0; i < 3; i++) // row of blocks
+        for(int i = 1; i <= 3; i++) // row of blocks
         {
-            for(int k = 0; k < 3; k++) // column of blocks
+            for(int k = 1; k <= 3; k++) // column of blocks
             {
-                if((((1*i)<=this.Row) && (this.Row<=(3*i))) && (((1*k)<=this.Column) && (this.Column<=(3*k))))
+                if((((1*(i)<=this.Row) && (this.Row<=(3*i))) && (((1*k)<=this.Column) && (this.Column<=(3*k)))))
                 {
-                    // not setting correctly 
-                    this.Block.SetNum(i+1); // Assign block number
+                    // what happens when we are in block 4
+                    this.Block.SetNum(i+k-1); // Assign block number
                     return;
                 }
             }
@@ -47,22 +47,5 @@ public class Hash
         public int GetNum() {return this.Num;}
         public void SetNum(int value) {this.Num = value;}
 
-        // do I need the following? 
-
-        // The following two methods returns the top left row/column index
-        // public int GetRow() 
-        // {
-        //     if((Num == 1)||(Num == 2)||(Num == 3)) return 1;
-        //     else if((Num == 4)||(Num == 5)||(Num == 6)) return 3;
-        //     else if((Num == 7)||(Num == 8)||(Num == 9)) return 6;
-        //     else return 0;
-        // }
-        // public int GetColumn() 
-        // {
-        //     if((Num == 1)||(Num == 4)||(Num == 7)) return 1;
-        //     else if((Num == 2)||(Num == 5)||(Num == 8)) return 3;
-        //     else if((Num == 3)||(Num == 6)||(Num == 9)) return 6;
-        //     else return 0;
-        // }
     }
 }
