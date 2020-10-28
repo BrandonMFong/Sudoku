@@ -9,15 +9,29 @@ class Sudoku
     static String EmptySquare = "";
     Hash Hash = new Hash(); // Remember that Hash is not zero index 
 
-    public static boolean isSafe(String [][]Board, Hash Hash)
+    public static boolean isSafe(String [][]Board, Hash Hash, int num)
     {
+        int column = Hash.GetColumn();
+        int row = Hash.GetRow();
+        String numstring = String.valueOf(num);
+
         // Check if row is good
-        for(int row = 0; row <= Max; row++)
+        for(int r = 0; r <= Max; r++)
         {
-            
+            if(Board[r][column].equals(numstring))
+            {
+                return false; 
+            }
         }
 
         // Check if column is good
+        for(int c = 0; c <= Max; c++)
+        {
+            if(Board[row][c].equals(numstring))
+            {
+                return false;
+            }
+        }
 
         // Check if block is good 
 

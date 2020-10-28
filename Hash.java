@@ -29,16 +29,16 @@ public class Hash
     {
         for(int i = 1; i < 9; i = i + 3) // row of blocks
         {
-            int BlockOffset = 0;
+            // int BlockOffset = 0;
             for(int k = 1; k < 9; k = k + 3) // column of blocks
             {
                 if((((i)<=this.Row) && (this.Row<=(i+2))) && (((k)<=this.Column) && (this.Column<=(k+2))))
                 {
                     // what happens when we are in block 4
-                    this.Block.SetNum(i+BlockOffset); // Assign block number
+                    this.Block.SetNum(i+(k/3)); // Assign block number
                     return;
                 }
-                BlockOffset++;
+                // BlockOffset++;
             }
         }
     }
@@ -60,9 +60,27 @@ public class Hash
     class Block
     {
         private int Num;
+        
+        // Row/Col param in block   
+        private int RowArray[] = new int[2];
+        private int ColArray[] = new int[2];
 
         public int GetNum() {return this.Num;}
-        public void SetNum(int value) {this.Num = value;}
+        public int [] GetRowArray(){return this.RowArray;}
+        public int [] GetColArray(){return this.ColArray;}
+
+        public void SetNum(int value) 
+        {
+            this.Num = value;
+
+            // Determine Column block
+            int temp = value % 3;
+            ColArray[1] = (temp == 0) ? 9 : temp * 3; // 3n%3 = 0
+            ColArray[0] = ColArray[1] - 2;
+
+            // Determine Row Block 
+
+        }
 
     }
 }
