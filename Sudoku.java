@@ -34,9 +34,7 @@ class Sudoku
 
         // Remember that Hash is not zero index 
         Hash Hash = new Hash();
-        Hash.SetColumn(3); // Column 1
-        Hash.SetRow(4); // Row 1
-        System.out.println(MessageFormat.format("We are in block {0}", Hash.GetBlockNum()));
+        System.out.println(MessageFormat.format("\nWe are in block {0}", Hash.GetBlockNum()));
 
         // Find an empty square
         for(int r = 0; r < Max; r++)
@@ -45,7 +43,7 @@ class Sudoku
             {
                 if(Board[r][c].equals(EmptySquare))
                 {
-                    Hash.SetRow(r); Hash.SetColumn(c);
+                    Hash.SetRow(r+1); Hash.SetColumn(c+1); // remember we are not zero indexing 
                 }
             }
         }
