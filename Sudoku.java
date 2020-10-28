@@ -2,11 +2,27 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.MessageFormat;
 import java.util.Scanner;
-
+// https://www.geeksforgeeks.org/sudoku-backtracking-7/
 class Sudoku 
 {
     static int Max = 9;
     static String EmptySquare = "";
+    Hash Hash = new Hash(); // Remember that Hash is not zero index 
+
+    public static boolean isSafe(String [][]Board, Hash Hash)
+    {
+        // Check if row is good
+        for(int row = 0; row <= Max; row++)
+        {
+            
+        }
+
+        // Check if column is good
+
+        // Check if block is good 
+
+        return true;
+    }
     
     // Print contents of array list 
     // Each entry of the list is a string array so we have to go through that string array 
@@ -32,8 +48,6 @@ class Sudoku
     {
         boolean Done = false;
 
-        // Remember that Hash is not zero index 
-        Hash Hash = new Hash();
         System.out.println(MessageFormat.format("\nWe are in block {0}", Hash.GetBlockNum()));
 
         // Find an empty square
@@ -43,7 +57,19 @@ class Sudoku
             {
                 if(Board[r][c].equals(EmptySquare))
                 {
+                    // Record row/col/block
                     Hash.SetRow(r+1); Hash.SetColumn(c+1); // remember we are not zero indexing 
+
+                    // Go through and fill in empty squares
+                    for(int num = 1; num <= Max; num++)
+                    {
+                        if(isSafe())
+                        {
+                            Board[r][c] = String.valueOf(num); // convert to string
+                            break;
+                            // TODO what to do after? 
+                        }
+                    }
                 }
             }
         }
