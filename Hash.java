@@ -74,12 +74,14 @@ public class Hash
             this.Num = value;
 
             // Determine Column block
-            int temp = value % 3;
-            ColArray[1] = (temp == 0) ? 9 : temp * 3; // 3n%3 = 0
+            int x = value % 3;
+            ColArray[1] = (x == 0) ? 9 : x * 3; // 3n%3 = 0
             ColArray[0] = ColArray[1] - 2;
 
             // Determine Row Block 
-
+            int y = value / 3;
+            RowArray[1] = (x == 0) ? y + 1 : y;
+            // TODO finish algorithm to figure out the row/col ranges
         }
 
     }
