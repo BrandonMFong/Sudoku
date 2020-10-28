@@ -27,19 +27,36 @@ public class Hash
     // evaluated by setting col/row num
     private void SetBlockNum()
     {
-        for(int i = 1; i <= 3; i++) // row of blocks
+        for(int i = 1; i < 9; i = i + 3) // row of blocks
         {
-            for(int k = 1; k <= 3; k++) // column of blocks
+            int BlockOffset = 0;
+            for(int k = 1; k < 9; k = k + 3) // column of blocks
             {
-                if((((1*(i)<=this.Row) && (this.Row<=(3*i))) && (((1*k)<=this.Column) && (this.Column<=(3*k)))))
+                if((((i)<=this.Row) && (this.Row<=(i+2))) && (((k)<=this.Column) && (this.Column<=(k+2))))
                 {
                     // what happens when we are in block 4
-                    this.Block.SetNum(i+k-1); // Assign block number
+                    this.Block.SetNum(i+BlockOffset); // Assign block number
                     return;
                 }
+                BlockOffset++;
             }
         }
     }
+
+    /* Block Map */
+    // []=====[]=====[]=====[]
+    // []     []     []     []
+    // []  1  []  2  []  3  []
+    // []     []     []     []
+    // []=====[]=====[]=====[]
+    // []     []     []     []
+    // []  4  []  5  []  6  []
+    // []     []     []     []
+    // []=====[]=====[]=====[]
+    // []     []     []     []
+    // []  7  []  8  []  9  []
+    // []     []     []     []
+    // []=====[]=====[]=====[]
     class Block
     {
         private int Num;
