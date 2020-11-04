@@ -80,8 +80,7 @@ public class Hash
 
             // Determine Row Block 
             int y = value / 3;
-            RowArray[1] = (x == 0) ? y + 1 : y;
-            // TODO finish algorithm to figure out the row/col ranges
+            RowArray[1] = (x == 0) ? y*3 : (y+1)*3;
         }
 
     }
