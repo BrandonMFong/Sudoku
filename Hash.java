@@ -4,7 +4,7 @@ public class Hash
     // Keeps track of the current index we are solving
     private int Row;
     private int Column;
-    private Block Block = new Block();
+    public Block Block = new Block();
 
     // GET
     public int GetRow(){return this.Row;}

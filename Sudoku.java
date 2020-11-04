@@ -33,8 +33,20 @@ class Sudoku
         }
 
         // Check if block is good 
+        int [] rowArr = Hash.Block.GetRowArray();
+        int [] colArr = Hash.Block.GetColArray();
+        for(int r = rowArr[0]; r <= rowArr[1]; r++)
+        {
+            for(int c = colArr[0]; c <= colArr[1];c++)
+            {
+                if(Board[r][c].equals(numstring))
+                {
+                    return false;
+                }
+            }
+        }
 
-        return true;
+        return true; // if we are here, then it has passed all tests
     }
     
     // Print contents of array list 
