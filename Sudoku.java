@@ -71,7 +71,7 @@ class Sudoku
 
     public static boolean Solve(String [][]Board)
     {
-        boolean Done = false;
+        boolean Done = true;
         Hash Hash = new Hash(); // Remember that Hash is not zero index 
         // Hash.SetRow(5); Hash.SetColumn(8); // test values
 
@@ -85,22 +85,28 @@ class Sudoku
                     // Record row/col/block
                     Hash.SetRow(r+1); Hash.SetColumn(c+1); 
                     System.out.println(MessageFormat.format("\nWe are in block {0}", Hash.GetBlockNum()));
-
-                    // Go through and fill in empty squares
-                    for(int num = 1; num <= Max; num++)
-                    {
-                        if(isSafe(Board,Hash,num))
-                        {
-                            Board[r][c] = String.valueOf(num); // convert to string
-                            break;
-                            // TODO what to do after? 
-                        }
-                    }
+                    Done = false;
+                    break;  
                 }
+            }
+            if(!Done) break;
+        }
+
+        if(Done) return true;
+
+        // Go through and fill in empty squares
+        for(int num = 1; num <= Max; num++)
+        {
+            if(isSafe(Board,Hash,num))
+            {
+                Board[Hash.GetRow()-1][Hash.GetColumn()-1] = String.valueOf(num); // convert to string
+
+                if(Solve(Board)) return true;
+                else Board[Hash.GetRow()-1][Hash.GetColumn()-1] = EmptySquare;
             }
         }
 
-        return Done;
+        return false;
     }
 
 
