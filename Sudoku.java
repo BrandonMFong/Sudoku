@@ -7,7 +7,6 @@ class Sudoku
 {
     static int Max = 9;
     static String EmptySquare = "";
-    Hash Hash = new Hash(); // Remember that Hash is not zero index 
 
     public static boolean isSafe(String [][]Board, Hash Hash, int num)
     {
@@ -61,8 +60,8 @@ class Sudoku
     public static boolean Solve(String [][]Board)
     {
         boolean Done = false;
-
-        System.out.println(MessageFormat.format("\nWe are in block {0}", Hash.GetBlockNum()));
+        Hash Hash = new Hash(); // Remember that Hash is not zero index 
+        // Hash.SetRow(5); Hash.SetColumn(8); // test values
 
         // Find an empty square
         for(int r = 0; r < Max; r++)
@@ -72,12 +71,13 @@ class Sudoku
                 if(Board[r][c].equals(EmptySquare))
                 {
                     // Record row/col/block
-                    Hash.SetRow(r+1); Hash.SetColumn(c+1); // remember we are not zero indexing 
+                    Hash.SetRow(r+1); Hash.SetColumn(c+1); 
+                    System.out.println(MessageFormat.format("\nWe are in block {0}", Hash.GetBlockNum()));
 
                     // Go through and fill in empty squares
                     for(int num = 1; num <= Max; num++)
                     {
-                        if(isSafe())
+                        if(isSafe(Board,Hash,num))
                         {
                             Board[r][c] = String.valueOf(num); // convert to string
                             break;

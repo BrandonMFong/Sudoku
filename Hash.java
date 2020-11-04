@@ -81,7 +81,7 @@ public class Hash
             // Determine Row Block 
             int y = value / 3;
             RowArray[1] = (x == 0) ? y*3 : (y+1)*3;
-            RowArray[0] = ColArray[1] - 2;
+            RowArray[0] = RowArray[1] - 2;
         }
 
     }
