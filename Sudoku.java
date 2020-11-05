@@ -1,4 +1,6 @@
 import java.io.File; 
+import java.io.FileWriter; 
+import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.text.MessageFormat;
 import java.util.Scanner;
@@ -69,6 +71,48 @@ class Sudoku
         System.out.print("\n[]=====[]=====[]=====[]\n");
     }
 
+    public static void ExportCSV(String [][] Board)
+    {
+        try 
+        {
+            String SolutionFile = ".\\output\\";
+            File file = new File(SolutionFile);
+            //Creating the directory
+            boolean bool;
+            if(!file.exists()) bool = file.mkdir();
+            else bool = true;
+            
+            if(bool)
+            {
+                System.out.println("Output directory created successfully");
+
+                FileWriter myWriter = new FileWriter(SolutionFile + "Solution.csv");
+                String boardstring = "";
+                for(int i = 0; i < Max; i++)
+                {
+                    for(int k = 0; k < Max; k++)
+                    {
+                        boardstring = boardstring + Board[i][k] + ",";
+                    }
+                    boardstring = boardstring + "\\n";
+                }
+                myWriter.write(boardstring);
+                myWriter.close();
+                System.out.println("Successfully exported solution in .csv file.");
+            }
+            else
+            {
+                System.out.println("Error in creating solution file");
+            }
+            
+        }
+        catch (IOException e) 
+        {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
     public static boolean Solve(String [][]Board)
     {
         boolean Done = true;
@@ -128,6 +172,11 @@ class Sudoku
         if(Solve(Board)) 
         {
             PrintBoard(Board);
+            ExportCSV(Board);
+        }
+        else
+        {
+            System.out.println("No solution");
         }
 
     }
