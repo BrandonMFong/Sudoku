@@ -9,6 +9,10 @@ class Sudoku
 {
     static int Max = 9;
     static String EmptySquare = "";
+    static String inputDir = ".\\input\\"; // Directory
+    static String inputFile = "Matrix.csv";
+    static String outputDir = ".\\output\\"; // Directory // Directory
+    static String outputFile = "Solution.csv";
 
     public static boolean isSafe(String [][]Board, Hash Hash, int num)
     {
@@ -75,13 +79,12 @@ class Sudoku
     {
         try 
         {
-            String outputDir = ".\\output\\"; // Directory
             
             if(CreateDir(outputDir))
             {
-                System.out.println("Output directory created successfully");
+                System.out.println("\nOutput directory created successfully");
 
-                FileWriter myWriter = new FileWriter(outputDir + "Solution.csv");
+                FileWriter myWriter = new FileWriter(outputDir + outputFile);
                 String boardstring = "";
                 for(int i = 0; i < Max; i++)
                 {
@@ -94,6 +97,7 @@ class Sudoku
                 myWriter.write(boardstring);
                 myWriter.close();
                 System.out.println("Successfully exported solution in .csv file.");
+                System.out.println(MessageFormat.format("\nOuput: {0}\n", outputDir + outputFile));
             }
             else
             {
@@ -159,12 +163,11 @@ class Sudoku
 
     public static void main(String[] args) throws FileNotFoundException 
     {
-        String inputDir = ".\\input\\"; // Directory
 
         if(CreateDir(inputDir))
         {
             // Load array list variable
-            Scanner FileReader = new Scanner(new File(inputDir + "Matrix.csv"));
+            Scanner FileReader = new Scanner(new File(inputDir + inputFile));
             String [][] Board = new String[Max][Max];
             
             // go through each line
@@ -178,6 +181,7 @@ class Sudoku
             // Solve the board 
             if(Solve(Board)) 
             {
+                System.out.print("\nSolution:");
                 PrintBoard(Board);
                 ExportCSV(Board);
             }
