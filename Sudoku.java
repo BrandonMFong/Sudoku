@@ -87,9 +87,9 @@ class Sudoku
                 {
                     for(int k = 0; k < Max; k++)
                     {
-                        boardstring = boardstring + Board[i][k] + ",";
+                        boardstring = boardstring + Board[i][k] + ((k != Max-1) ? "," : ""); // concat boxes 
                     }
-                    boardstring = boardstring + "\n";
+                    boardstring = boardstring + "\n"; // new line for next row 
                 }
                 myWriter.write(boardstring);
                 myWriter.close();
@@ -112,7 +112,6 @@ class Sudoku
     {
         boolean Done = true;
         Hash Hash = new Hash(); // Remember that Hash is not zero index 
-        // Hash.SetRow(5); Hash.SetColumn(8); // test values
 
         // Find an empty square
         for(int r = 0; r < Max; r++)
