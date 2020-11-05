@@ -12,3 +12,4 @@ Hash$Block.class
 Sudoku.class 
 Sudoku/*
 *.jar
+*.zip
