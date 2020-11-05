@@ -7,7 +7,7 @@ Create the directory ".\input\" and make a file named "Matrix.csv".  In the Matr
 
 The solution will be written in ".\output\Solution.csv". 
 
-### Example:
+### Example Matrix.csv file
 ```
 ,7,,,8,,,,
 5,1,,7,9,,,,4
