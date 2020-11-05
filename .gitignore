@@ -4,7 +4,9 @@ output
 input
 build-jar
 META-INF 
-bin
+bin/*.exe
+bin/input 
+bin/output
 Hash.class
 Hash$Block.class 
 Sudoku.class 

@@ -35,6 +35,37 @@ To create .jar
 jar cmf <manifest file> <Name of .jar file> <.class file, .class file,...>
 jar cmf .\manifest.txt Sudoku.jar .\Sudoku.class .\Hash.class '.\Hash$Block.class'
 ```
+manifest.txt must end with a new line
+
+- Launch4j config file 
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>B:\SOURCE\Repo\Sudoku\Sudoku.jar</jar>
+  <outfile>B:\SOURCE\Repo\Sudoku\bin\Sudoku.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon></icon>
+  <jre>
+    <path>C:\Users\fongm\AppData\Local\Programs\AdoptOpenJDK\jdk-11.0.8.10-hotspot</path><!-- the root dir with bin & lib -->
+    <bundledJre64Bit>false</bundledJre64Bit>
+    <bundledJreAsFallback>false</bundledJreAsFallback>
+    <minVersion>1.8.0</minVersion>
+    <maxVersion></maxVersion>
+    <jdkPreference>preferJre</jdkPreference>
+    <runtimeBits>64/32</runtimeBits>
+  </jre>
+</launch4jConfig>
+```
 
 # Author
 Brandon Fong
