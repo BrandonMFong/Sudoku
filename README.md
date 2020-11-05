@@ -1,4 +1,4 @@
-# CSV Sudoku Solver
+# Sudoku Solver
 
 The program uses the Backtracking algorithm that takes an unsolved sudoku board and provides a solution for it.  
 
