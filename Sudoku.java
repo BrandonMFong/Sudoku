@@ -15,18 +15,18 @@ class Sudoku
         String numstring = String.valueOf(num);
 
         // Check if row is good
-        for(int r = 0; r <= Max; r++)
+        for(int r = 0; r < Max; r++)
         {
-            if(Board[r][column].equals(numstring))
+            if(Board[r][column-1].equals(numstring))
             {
                 return false; 
             }
         }
 
         // Check if column is good
-        for(int c = 0; c <= Max; c++)
+        for(int c = 0; c < Max; c++)
         {
-            if(Board[row][c].equals(numstring))
+            if(Board[row-1][c].equals(numstring))
             {
                 return false;
             }
@@ -35,9 +35,9 @@ class Sudoku
         // Check if block is good 
         int [] rowArr = Hash.Block.GetRowArray();
         int [] colArr = Hash.Block.GetColArray();
-        for(int r = rowArr[0]; r <= rowArr[1]; r++)
+        for(int r = rowArr[0]-1; r <= rowArr[1]-1; r++)
         {
-            for(int c = colArr[0]; c <= colArr[1];c++)
+            for(int c = colArr[0]-1; c <= colArr[1]-1; c++)
             {
                 if(Board[r][c].equals(numstring))
                 {
@@ -125,7 +125,10 @@ class Sudoku
         PrintBoard(Board);
 
         // Solve the board 
-        if(Solve(Board)) PrintBoard(Board);
+        if(Solve(Board)) 
+        {
+            PrintBoard(Board);
+        }
 
     }
 }
