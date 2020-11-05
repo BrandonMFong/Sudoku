@@ -75,18 +75,13 @@ class Sudoku
     {
         try 
         {
-            String SolutionFile = ".\\output\\";
-            File file = new File(SolutionFile);
-            //Creating the directory
-            boolean bool;
-            if(!file.exists()) bool = file.mkdir();
-            else bool = true;
+            String outputDir = ".\\output\\"; // Directory
             
-            if(bool)
+            if(CreateDir(outputDir))
             {
                 System.out.println("Output directory created successfully");
 
-                FileWriter myWriter = new FileWriter(SolutionFile + "Solution.csv");
+                FileWriter myWriter = new FileWriter(outputDir + "Solution.csv");
                 String boardstring = "";
                 for(int i = 0; i < Max; i++)
                 {
@@ -153,30 +148,44 @@ class Sudoku
         return false;
     }
 
+    public static boolean CreateDir(String Dir)
+    {
+        File file = new File(Dir);
+
+        //Creating the directory
+        if(!file.exists()) return file.mkdir();
+        else return true;
+    }
+
 
     public static void main(String[] args) throws FileNotFoundException 
     {
-        // Load array list variable
-        Scanner FileReader = new Scanner(new File(".\\res\\Matrix.csv"));
-        String [][] Board = new String[Max][Max];
-        
-        // go through each line
-        // ensuring size 9 array 
-        // Each line is an array, add that to the array list 
-        for(int i = 0; i < Max; i++) Board[i] = FileReader.nextLine().split(",",Max); 
-        FileReader.close();
+        String inputDir = ".\\input\\"; // Directory
 
-        PrintBoard(Board);
-
-        // Solve the board 
-        if(Solve(Board)) 
+        if(CreateDir(inputDir))
         {
+            // Load array list variable
+            Scanner FileReader = new Scanner(new File(inputDir + "Matrix.csv"));
+            String [][] Board = new String[Max][Max];
+            
+            // go through each line
+            // ensuring size 9 array 
+            // Each line is an array, add that to the array list 
+            for(int i = 0; i < Max; i++) Board[i] = FileReader.nextLine().split(",",Max); 
+            FileReader.close();
+    
             PrintBoard(Board);
-            ExportCSV(Board);
-        }
-        else
-        {
-            System.out.println("No solution");
+    
+            // Solve the board 
+            if(Solve(Board)) 
+            {
+                PrintBoard(Board);
+                ExportCSV(Board);
+            }
+            else
+            {
+                System.out.println("No solution");
+            }
         }
 
     }
