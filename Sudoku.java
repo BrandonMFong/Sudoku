@@ -164,7 +164,7 @@ class Sudoku
     public static void main(String[] args) throws FileNotFoundException 
     {
 
-        if(CreateDir(inputDir))
+        if(CreateDir(inputDir)) // Doesn't create because we are assuming the input has been set. Just checks if directory exists.
         {
             // Load array list variable
             Scanner FileReader = new Scanner(new File(inputDir + inputFile));
@@ -190,6 +190,5 @@ class Sudoku
                 System.out.println("No solution");
             }
         }
-
     }
 }
