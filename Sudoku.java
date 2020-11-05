@@ -94,7 +94,7 @@ class Sudoku
                     {
                         boardstring = boardstring + Board[i][k] + ",";
                     }
-                    boardstring = boardstring + "\\n";
+                    boardstring = boardstring + "\n";
                 }
                 myWriter.write(boardstring);
                 myWriter.close();
