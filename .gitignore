@@ -5,3 +5,8 @@ input
 build-jar
 META-INF 
 bin
+Hash.class
+Hash$Block.class 
+Sudoku.class 
+Sudoku/*
+*.jar

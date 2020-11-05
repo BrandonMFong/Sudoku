@@ -28,5 +28,13 @@ The solution will be written in ".\output\Solution.csv".
 ### Output
 ![Input Sudoku](https://github.com/BrandonMFong/Sudoku/blob/main/img/OutputBoardPrint.PNG)
 
+# Dev Notes
+
+To create .jar
+```
+jar cmf <manifest file> <Name of .jar file> <.class file, .class file,...>
+jar cmf .\manifest.txt Sudoku.jar .\Sudoku.class .\Hash.class '.\Hash$Block.class'
+```
+
 # Author
 Brandon Fong
